@@ -10,8 +10,10 @@
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
-        <button class="nav-btn" onclick="scrollTo('about')">About</button>
-        <button class="nav-btn" onclick="scrollTo('collection')">
+        <button class="nav-btn" onclick="scrollToSection('about')">
+          About
+        </button>
+        <button class="nav-btn" onclick="scrollToSection('collection')">
           Collection
         </button>
 
@@ -27,8 +29,12 @@
           </div>
         </div>
 
-        <button class="nav-btn" onclick="scrollTo('tostart')">To Start</button>
-        <button class="nav-btn" onclick="scrollTo('contact')">Contact</button>
+        <button class="nav-btn" onclick="scrollToSection('tostart')">
+          To Start
+        </button>
+        <button class="nav-btn" onclick="scrollToSection('contact')">
+          Contact
+        </button>
       </div>
     </nav>
 
@@ -53,10 +59,7 @@
           </p>
         </div>
         <div class="about-img">
-          <img
-            src="https://www.figma.com/api/mcp/asset/5be5db4b-32f6-4761-ba81-273e80e3bfd2"
-            alt="Skullpanda"
-          />
+          <img src="Images/3.webp" alt="Skullpanda" />
         </div>
       </div>
     </section>
@@ -71,6 +74,13 @@
             alt="the admiration"
           />
           <p>the admiration</p>
+          <!-- hidden extras for the admiration carousel -->
+          <img
+            class="hidden-gallery"
+            src="Images/purple1.jpg"
+            alt="the admiration"
+            style="display: none"
+          />
         </div>
         <div class="card">
           <img
@@ -78,13 +88,34 @@
             alt="the joy"
           />
           <p>the joy</p>
+          <!-- hidden extras for the joy carousel (not separate cards) -->
+          <img
+            class="hidden-gallery"
+            src="Images/orange 2.jpg"
+            alt="the joy"
+            style="display: none"
+          />
+          <img
+            class="hidden-gallery"
+            src="Images/orange 3.jpg"
+            alt="the joy"
+            style="display: none"
+          />
         </div>
+
         <div class="card">
           <img
             src="https://www.figma.com/api/mcp/asset/8549136b-1d50-4282-9b08-81ad033888e3"
             alt="the trust"
           />
           <p>the trust</p>
+          <!-- hidden extras for the trust carousel -->
+          <img
+            class="hidden-gallery"
+            src="Images/pink2.jpg"
+            alt="the trust"
+            style="display: none"
+          />
         </div>
         <div class="card">
           <img
@@ -92,6 +123,19 @@
             alt="the anger"
           />
           <p>the anger</p>
+          <!-- hidden extras for the anger carousel -->
+          <img
+            class="hidden-gallery"
+            src="Images/red 2.jpg"
+            alt="the anger"
+            style="display: none"
+          />
+          <img
+            class="hidden-gallery"
+            src="Images/red 3.jpg"
+            alt="the anger"
+            style="display: none"
+          />
         </div>
         <div class="card">
           <img
@@ -99,6 +143,19 @@
             alt="the ecstasy"
           />
           <p>the ecstasy</p>
+          <!-- hidden extras for the ecstasy carousel -->
+          <img
+            class="hidden-gallery"
+            src="Images/otherpink2.jpg"
+            alt="the ecstasy"
+            style="display: none"
+          />
+          <img
+            class="hidden-gallery"
+            src="Images/otherpink3.jpg"
+            alt="the ecstasy"
+            style="display: none"
+          />
         </div>
         <div class="card">
           <img
@@ -113,6 +170,13 @@
             alt="the courtyard"
           />
           <p>the courtyard</p>
+          <!-- hidden extras for the courtyard carousel -->
+          <img
+            class="hidden-gallery"
+            src="Images/grave 2.jpg"
+            alt="the courtyard"
+            style="display: none"
+          />
         </div>
         <div class="card">
           <img
@@ -215,35 +279,270 @@
       </div>
     </section>
 
+    <!-- Lightbox / Carousel modal -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+      <div class="lightbox-inner">
+        <button class="lb-close" aria-label="Close">×</button>
+        <button class="lb-prev" aria-label="Previous">‹</button>
+        <div class="lb-slide">
+          <img src="" alt="" />
+          <p class="lb-caption"></p>
+        </div>
+        <button class="lb-next" aria-label="Next">›</button>
+      </div>
+    </div>
+
     <script>
       let lastScroll = 0;
       const navbar = document.querySelector(".navbar");
+      const sections = document.querySelectorAll("section");
+      const heroTitle = document.querySelector(".hero-title");
+
+      // Observe hero entering the viewport and add `hero-scrolled` when visible
+      if (heroTitle) {
+        const heroObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                heroTitle.classList.add("hero-scrolled");
+              } else {
+                heroTitle.classList.remove("hero-scrolled");
+              }
+            });
+          },
+          { root: null, threshold: 0.5 }
+        );
+        heroObserver.observe(document.getElementById("hero"));
+      }
 
       window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
 
         if (currentScroll <= 0) {
           navbar.classList.remove("hidden");
+          sections.forEach((s) => s.classList.remove("section-slide"));
           return;
         }
 
         if (currentScroll > lastScroll && currentScroll > 100) {
-          // Scrolling down
+          // Scrolling down: hide navbar, slide all sections up slightly
           navbar.classList.add("hidden");
+          sections.forEach((s) => s.classList.add("section-slide"));
         } else {
-          // Scrolling up
+          // Scrolling up: show navbar, reset section positions
           navbar.classList.remove("hidden");
+          sections.forEach((s) => s.classList.remove("section-slide"));
         }
 
         lastScroll = currentScroll;
       });
 
-      function scrollTo(id) {
+      function scrollToSection(id) {
         const el = document.getElementById(id);
+        if (!el) return;
         const nav = document.querySelector(".navbar");
-        const offset = el.offsetTop - nav.offsetHeight;
+        const offset = el.offsetTop - (nav ? nav.offsetHeight : 0);
         window.scrollTo({ top: offset, behavior: "smooth" });
       }
+
+      // Slide-in observer for the figures in About and To Start
+      (function () {
+        const targets = document.querySelectorAll(".tostart-img, .about-img");
+        if (!targets || targets.length === 0) return;
+        const io = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+        );
+        targets.forEach((t) => io.observe(t));
+      })();
+
+      // Ensure figures that are already visible on load get the in-view class
+      (function ensureFiguresInViewOnLoad() {
+        function isVisible(el) {
+          const rect = el.getBoundingClientRect();
+          return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        const figs = Array.from(
+          document.querySelectorAll(".tostart-img, .about-img")
+        );
+        if (!figs.length) return;
+        window.addEventListener("load", () => {
+          figs.forEach((f) => {
+            if (isVisible(f)) f.classList.add("in-view");
+          });
+        });
+        // Also check immediately in case DOM is ready already
+        figs.forEach((f) => {
+          if (isVisible(f)) f.classList.add("in-view");
+        });
+      })();
+
+      /* Grouped collection carousel: open a carousel of images that share the same caption */
+      (function () {
+        const cards = Array.from(
+          document.querySelectorAll(".collection-grid .card")
+        );
+        if (!cards.length) return;
+
+        const groups = new Map();
+        cards.forEach((card) => {
+          const img = card.querySelector("img");
+          const caption = (
+            card.querySelector("p")?.textContent ||
+            img.alt ||
+            ""
+          ).trim();
+          const key = caption.trim();
+          if (!groups.has(key)) groups.set(key, []);
+          // add the visible image
+          groups.get(key).push({ img: img, card });
+          // include any hidden gallery images inside the same card (they won't show as separate cards)
+          const extras = Array.from(
+            card.querySelectorAll("img.hidden-gallery")
+          );
+          extras.forEach((ex) => groups.get(key).push({ img: ex, card }));
+        });
+
+        const lightbox = document.getElementById("lightbox");
+        const lbImg = lightbox.querySelector(".lb-slide img");
+        const lbCaption = lightbox.querySelector(".lb-caption");
+        const btnClose = lightbox.querySelector(".lb-close");
+        const btnPrev = lightbox.querySelector(".lb-prev");
+        const btnNext = lightbox.querySelector(".lb-next");
+
+        // Diagnostic: log groups
+        try {
+          const summary = Array.from(groups.entries()).map(([k, arr]) => ({
+            key: k,
+            count: arr.length,
+          }));
+          console.log("carousel groups initialized", summary);
+        } catch (e) {
+          console.warn("carousel log error", e);
+        }
+
+        let currentGroup = [];
+        let currentIndex = 0;
+
+        function showCurrent() {
+          if (!currentGroup.length) return;
+          currentIndex =
+            (currentIndex + currentGroup.length) % currentGroup.length;
+          const item = currentGroup[currentIndex];
+          lbImg.src = item.img.src;
+          lbImg.alt = item.img.alt || "";
+          lbCaption.textContent =
+            item.card.querySelector("p")?.textContent || item.img.alt || "";
+        }
+
+        function openGroup(key, startIndex = 0) {
+          currentGroup = groups.get(key) || [];
+          currentIndex = startIndex;
+          showCurrent();
+          // Hide prev/next controls when the group contains only one image
+          if (currentGroup.length <= 1) {
+            btnPrev.style.display = "none";
+            btnNext.style.display = "none";
+          } else {
+            btnPrev.style.display = "";
+            btnNext.style.display = "";
+          }
+          lightbox.classList.add("open");
+          lightbox.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+          lightbox.classList.remove("open");
+          lightbox.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          // Restore prev/next controls to default when closing
+          btnPrev.style.display = "";
+          btnNext.style.display = "";
+        }
+
+        // Wire images to open their caption group
+        cards.forEach((card) => {
+          const img = card.querySelector("img");
+          const caption = (
+            card.querySelector("p")?.textContent ||
+            img.alt ||
+            ""
+          ).trim();
+          // Wire only the visible card image to open its caption group
+          const key = caption.trim();
+          img.style.cursor = "pointer";
+          img.addEventListener("click", () => {
+            const group = groups.get(key) || [];
+            const idx = group.findIndex((it) => it.img === img);
+            console.log(
+              "openGroup click",
+              key,
+              "groupSize",
+              group.length,
+              "startIdx",
+              idx
+            );
+            console.log(
+              "group images:",
+              group.map((g) => g.img.src)
+            );
+            openGroup(key, idx >= 0 ? idx : 0);
+          });
+        });
+
+        btnClose.addEventListener("click", closeLightbox);
+        btnPrev.addEventListener("click", () => {
+          currentIndex -= 1;
+          showCurrent();
+        });
+        btnNext.addEventListener("click", () => {
+          currentIndex += 1;
+          showCurrent();
+        });
+
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (!lightbox.classList.contains("open")) return;
+          if (e.key === "Escape") closeLightbox();
+          if (e.key === "ArrowLeft") {
+            currentIndex -= 1;
+            showCurrent();
+          }
+          if (e.key === "ArrowRight") {
+            currentIndex += 1;
+            showCurrent();
+          }
+        });
+
+        // Touch swipe
+        let touchStartX = 0;
+        lbImg.addEventListener(
+          "touchstart",
+          (e) => (touchStartX = e.touches[0].clientX)
+        );
+        lbImg.addEventListener("touchend", (e) => {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          if (dx > 40) {
+            currentIndex -= 1;
+            showCurrent();
+          } else if (dx < -40) {
+            currentIndex += 1;
+            showCurrent();
+          }
+        });
+      })();
     </script>
   </body>
 </html>
