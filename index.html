@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skullrain - Skullpanda Collection</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=12" />
   </head>
   <body>
     <!-- Navigation -->
@@ -216,6 +216,28 @@
     </section>
 
     <script>
+      let lastScroll = 0;
+      const navbar = document.querySelector(".navbar");
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll <= 0) {
+          navbar.classList.remove("hidden");
+          return;
+        }
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+          // Scrolling down
+          navbar.classList.add("hidden");
+        } else {
+          // Scrolling up
+          navbar.classList.remove("hidden");
+        }
+
+        lastScroll = currentScroll;
+      });
+
       function scrollTo(id) {
         const el = document.getElementById(id);
         const nav = document.querySelector(".navbar");

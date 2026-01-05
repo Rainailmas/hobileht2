@@ -36,11 +36,16 @@ html {
     top: 0;
     width: 100%;
     background: #000;
-    height: 368px;
+    height: 120px;
     display: flex;
-    align-items: flex-end;
-    padding-bottom: 40px;
+    align-items: center;
+    padding: 0;
     z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar.hidden {
+    transform: translateY(-100%);
 }
 
 .nav-container {
@@ -49,18 +54,19 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 150px;
+    padding: 0 60px;
+    width: 100%;
 }
 
 .nav-btn {
     background: none;
     border: none;
     color: #fff;
-    font-size: 48px;
+    font-size: 20px !important;
     font-family: 'Wasted Vindey', sans-serif;
     cursor: pointer;
     transition: all 0.3s;
-    padding: 10px 20px;
+    padding: 6px 14px;
 }
 
 .nav-btn:hover {
@@ -71,39 +77,43 @@ html {
 .logo-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .logo-img {
-    height: 165px;
+    height: 100px !important;
     width: auto;
 }
 
 .logo-text h1 {
     font-family: 'Roletta', serif;
-    font-size: 67px;
+    font-size: 22px !important;
     color: #fff;
-    line-height: 1;
+    line-height: 1.1;
     margin: 0;
 }
 
 .logo-text p {
     font-family: 'Roletta', serif;
-    font-size: 28px;
+    font-size: 13px !important;
     color: #fff;
-    margin: 5px 0 0 0;
+    margin: 0;
+    line-height: 1.2;
 }
 
 /* Hero Section */
 .hero {
-    height: 1117px;
-    background: url('https://www.figma.com/api/mcp/asset/7f6268d5-fdb3-4ded-a164-13b763cfae20') center/cover no-repeat;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 1117px;
+    background: url('https://www.figma.com/api/mcp/asset/7f6268d5-fdb3-4ded-a164-13b763cfae20') center 75%/cover no-repeat;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-left: 171px;
+    justify-content: center;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-top: 80px;
-    margin-top: 368px;
+    margin-top: 120px;
     position: relative;
 }
 
@@ -116,47 +126,58 @@ html {
 
 .hero-title {
     font-family: 'Roletta', serif;
-    font-size: 300px;
+    font-size: clamp(80px, 17vw, 300px);
     color: #fff;
     text-shadow: -15px 2px 16.9px rgba(0,0,0,0.25);
     position: relative;
     z-index: 1;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* About Section */
 .about {
     background: #691a1a;
-    padding: 140px 98px;
-    min-height: 1117px;
+    padding: 100px 5%;
+    min-height: 600px;
     position: relative;
+    overflow: visible;
 }
 
 .about-title {
     font-family: 'Wasted Vindey', sans-serif;
-    font-size: 128px;
+    font-size: clamp(48px, 7vw, 128px);
     color: #fff;
     margin-bottom: 60px;
-    margin-left: 27px;
+    margin-left: 2%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: normal;
 }
 
 .about-box {
     max-width: 1349px;
+    margin: 0 auto;
     background: #e2e3de;
     border-radius: 80px;
-    padding: 87px 88px;
+    padding: 60px 5%;
     display: flex;
     gap: 0;
     align-items: flex-start;
     position: relative;
+    overflow: visible;
 }
 
 .about-text {
     flex: 1;
-    max-width: 961px;
+    max-width: 60%;
     font-family: 'Wasted Vindey', sans-serif;
-    font-size: 48px;
+    font-size: clamp(24px, 2.5vw, 48px);
     line-height: normal;
     color: #000;
+    z-index: 1;
+    position: relative;
 }
 
 .about-text p {
@@ -165,40 +186,43 @@ html {
 
 .about-img {
     position: absolute;
-    right: -218px;
-    top: -18px;
-    width: 1082px;
-    height: 1205px;
-    overflow: hidden;
+    right: -50%;
+    top: -35%;
+    width: 140%;
+    height: 165%;
+    overflow: visible;
 }
 
 .about-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Collection Section */
 .collection {
     background: #000;
-    padding: 137px 119px;
+    padding: 100px 5%;
     min-height: auto;
 }
 
 .collection-title {
     font-family: 'Wasted Vindey', sans-serif;
-    font-size: 128px;
+    font-size: clamp(48px, 7vw, 128px);
     color: #fff;
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: normal;
 }
 
 .collection-grid {
     max-width: 1490px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 463px);
-    gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 463px));
+    gap: 40px;
     justify-content: center;
 }
 
@@ -208,8 +232,9 @@ html {
     overflow: hidden;
     box-shadow: 0 4px 4px rgba(0,0,0,0.25);
     transition: all 0.3s;
-    width: 463px;
-    height: 600px;
+    width: 100%;
+    max-width: 463px;
+    height: auto;
 }
 
 .card:hover {
@@ -219,18 +244,19 @@ html {
 
 .card img {
     width: 100%;
-    height: 431px;
+    height: auto;
+    aspect-ratio: 463 / 431;
     object-fit: cover;
     display: block;
 }
 
 .card p {
     font-family: 'Roletta', serif;
-    font-size: 48px;
+    font-size: clamp(24px, 2.5vw, 48px);
     color: #000;
     text-align: center;
-    padding: 42px 20px;
-    height: 169px;
+    padding: 30px 20px;
+    min-height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -239,18 +265,21 @@ html {
 /* To Start Section */
 .tostart {
     background: #691a1a;
-    padding: 139px 305px;
-    min-height: 1117px;
+    padding: 100px 5%;
+    min-height: 600px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .tostart-title {
     font-family: 'Wasted Vindey', sans-serif;
-    font-size: 128px;
+    font-size: clamp(48px, 7vw, 128px);
     color: #fff;
     margin-bottom: 60px;
     text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: normal;
 }
 
 .tostart-box {
@@ -258,36 +287,39 @@ html {
     margin: 0 auto;
     background: #d9d9d9;
     border-radius: 80px;
-    padding: 57px 80px;
+    padding: 60px 5%;
     display: flex;
     gap: 60px;
     align-items: flex-start;
     position: relative;
     z-index: 1;
+    overflow: visible;
 }
 
 .tostart-img {
     position: absolute;
-    left: -238px;
-    top: 0;
-    width: 1102px;
-    height: 1234px;
+    left: -70%;
+    top: -40%;
+    width: 165%;
+    height: 185%;
     transform: rotate(-1.025deg);
 }
 
 .tostart-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .tostart-text {
     flex: 1;
-    margin-left: 379px;
+    margin-left: 30%;
     font-family: 'Wasted Vindey', sans-serif;
-    font-size: 48px;
+    font-size: clamp(24px, 2.5vw, 48px);
     line-height: normal;
     color: #000;
+    z-index: 1;
+    position: relative;
 }
 
 .tostart-text p {
@@ -306,8 +338,8 @@ html {
 /* Contact Section */
 .contact {
     background: #000;
-    padding: 107px 281px;
-    min-height: 1117px;
+    padding: 100px 5%;
+    min-height: 600px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -320,24 +352,28 @@ html {
 }
 
 .contact-logo img {
-    height: 403px;
+    height: clamp(150px, 23vw, 403px);
     width: auto;
-    margin-bottom: 30px;
+    margin-bottom: 0;
 }
 
 .contact-logo h2 {
     font-family: 'Roletta', serif;
-    font-size: 96px;
+    font-size: clamp(48px, 5.5vw, 96px);
     color: #fff;
+    margin-top: -45px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .contact-box {
     background: #e6e6e6;
-    border-radius: 264px;
-    padding: 60px 100px;
-    display: inline-block;
-    width: 1165px;
-    height: 253px;
+    border-radius: 130px;
+    padding: 50px 8%;
+    width: 100%;
+    max-width: 1165px;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -346,7 +382,7 @@ html {
 
 .contact-box p {
     font-family: 'Wasted Vindey', sans-serif;
-    font-size: 64px;
+    font-size: clamp(28px, 3.5vw, 64px);
     color: #000;
     margin: 10px 0;
 }
@@ -354,27 +390,27 @@ html {
 /* Responsive */
 @media (max-width: 1600px) {
     .nav-container {
-        padding: 0 80px;
+        padding: 0 40px;
     }
     
     .nav-btn {
-        font-size: 40px;
+        font-size: 18px !important;
     }
     
     .logo-img {
-        height: 130px;
+        height: 80px !important;
     }
     
     .logo-text h1 {
-        font-size: 55px;
+        font-size: 20px !important;
     }
     
     .logo-text p {
-        font-size: 24px;
+        font-size: 12px !important;
     }
     
     .hero-title {
-        font-size: 220px;
+        font-size: clamp(100px, 15vw, 220px);
     }
     
     .about-title, .collection-title, .tostart-title {
@@ -390,11 +426,45 @@ html {
     }
 }
 
+@media (max-width: 1024px) {
+    .navbar {
+        height: auto;
+        min-height: 90px;
+    }
+    
+    .about-box,
+    .tostart-box {
+        overflow: visible;
+    }
+    
+    .about-img {
+        right: -30%;
+        width: 110%;
+        height: 130%;
+    }
+    
+    .tostart-img {
+        left: -40%;
+        width: 120%;
+        height: 140%;
+    }
+    
+    .collection-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 420px));
+    }
+}
+
 @media (max-width: 1200px) {
+    .navbar {
+        height: auto;
+        min-height: 100px;
+        padding: 10px 0;
+    }
+    
     .nav-container {
         flex-wrap: wrap;
         justify-content: center;
-        padding: 0 40px;
+        padding: 15px 30px;
         gap: 15px;
     }
     
@@ -402,86 +472,140 @@ html {
         order: -1;
         width: 100%;
         justify-content: center;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .logo-img {
+        height: 60px !important;
+    }
+    
+    .logo-text h1 {
+        font-size: 18px !important;
+    }
+    
+    .logo-text p {
+        font-size: 11px !important;
     }
     
     .nav-btn {
-        font-size: 32px;
+        font-size: 16px !important;
     }
     
     .hero {
-        margin-top: 250px;
+        padding-left: 5%;
     }
     
-    .hero-title {
-        font-size: 150px;
-    }
-    
-    .about-title, .collection-title, .tostart-title {
-        font-size: 75px;
-    }
-    
-    .about-box, .tostart-box {
+    .about-box,
+    .tostart-box {
         flex-direction: column;
-        padding: 50px;
+        padding: 40px 5%;
     }
     
-    .about-img img, .tostart-img img {
+    .about-img {
+        position: static;
         width: 100%;
-        max-width: 500px;
+        height: auto;
+        max-height: 400px;
+        margin-top: 30px;
+        right: 0;
+        top: 0;
     }
     
-    .about-text, .tostart-text {
-        font-size: 32px;
+    .about-img img {
+        object-fit: cover;
+    }
+    
+    .about-text {
+        max-width: 100%;
+    }
+    
+    .tostart-img {
+        position: static;
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        transform: none;
+        margin-bottom: 30px;
+        left: 0;
+        top: 0;
+    }
+    
+    .tostart-img img {
+        object-fit: cover;
+    }
+    
+    .tostart-text {
+        margin-left: 0;
     }
     
     .collection-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+        gap: 30px;
     }
     
-    .about, .tostart {
-        padding: 80px 40px;
-    }
-    
-    .collection {
-        padding: 80px 40px;
-        min-height: auto;
-    }
-    
-    .contact {
-        padding: 80px 40px;
+    .contact-box {
+        border-radius: 80px;
+        padding: 40px 5%;
     }
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        min-height: 80px;
+        padding: 10px 0;
+    }
+    
+    .nav-container {
+        padding: 10px 20px;
+        gap: 10px;
+    }
+    
     .nav-btn {
-        font-size: 22px;
-        padding: 8px 12px;
+        font-size: 14px !important;
+        padding: 4px 10px;
     }
     
     .logo-img {
-        height: 80px;
+        height: 50px !important;
     }
     
     .logo-text h1 {
-        font-size: 36px;
+        font-size: 16px !important;
     }
     
     .logo-text p {
-        font-size: 18px;
+        font-size: 10px !important;
     }
     
-    .hero-title {
-        font-size: 80px;
+    .hero {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 80px;
     }
     
-    .about-title, .collection-title, .tostart-title {
-        font-size: 50px;
+    .about, .tostart, .collection {
+        padding: 60px 20px;
     }
     
-    .about-text, .tostart-text {
-        font-size: 24px;
+    .about-box, .tostart-box {
+        border-radius: 40px;
+        padding: 30px 20px;
+    }
+    
+    .about-img,
+    .tostart-img {
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 300px;
+    }
+    
+    .about-img img,
+    .tostart-img img {
+        object-fit: contain;
     }
     
     .collection-grid {
@@ -489,48 +613,63 @@ html {
         gap: 30px;
     }
     
-    .card img {
-        height: 350px;
-    }
-    
-    .card p {
-        font-size: 32px;
-        padding: 30px 15px;
+    .contact {
+        padding: 60px 20px;
     }
     
     .contact-logo img {
-        height: 180px;
+        margin-bottom: 5px;
     }
     
     .contact-logo h2 {
-        font-size: 60px;
+        margin-top: -30px;
     }
     
     .contact-box {
-        padding: 40px 60px;
-    }
-    
-    .contact-box p {
-        font-size: 40px;
+        border-radius: 60px;
+        padding: 30px 20px;
     }
 }
 
 @media (max-width: 480px) {
     .nav-container {
-        padding: 0 20px;
+        padding: 10px 15px;
+        gap: 8px;
     }
     
     .nav-btn {
-        font-size: 16px;
-        padding: 5px 8px;
+        font-size: 12px !important;
+        padding: 4px 8px;
+    }
+    
+    .logo-img {
+        height: 45px !important;
+    }
+    
+    .logo-text h1 {
+        font-size: 14px !important;
+    }
+    
+    .logo-text p {
+        font-size: 9px !important;
+    }
+    
+    .hero {
+        padding-left: 15px;
+        padding-right: 15px;
     }
     
     .hero-title {
         font-size: 50px;
     }
     
+    .about, .tostart, .collection {
+        padding: 40px 15px;
+    }
+    
     .about-title, .collection-title, .tostart-title {
         font-size: 36px;
+        margin-bottom: 30px;
     }
     
     .about-text, .tostart-text {
@@ -538,34 +677,50 @@ html {
     }
     
     .about-box, .tostart-box {
-        padding: 30px;
-        border-radius: 40px;
+        padding: 25px 20px;
+        border-radius: 30px;
+    }
+    
+    .about-img,
+    .tostart-img {
+        height: 250px;
+        margin-bottom: 20px;
     }
     
     .card img {
-        height: 280px;
+        height: auto;
     }
     
     .card p {
         font-size: 24px;
         padding: 20px 10px;
+        min-height: 80px;
+    }
+    
+    .contact {
+        padding: 40px 15px;
+    }
+    
+    .contact-logo {
+        margin-bottom: 40px;
     }
     
     .contact-logo img {
-        height: 130px;
+        height: 120px;
     }
     
     .contact-logo h2 {
-        font-size: 40px;
+        font-size: 36px;
+        margin-top: -25px;
     }
     
     .contact-box {
-        padding: 30px 40px;
-        border-radius: 150px;
+        padding: 25px 30px;
+        border-radius: 80px;
     }
     
     .contact-box p {
-        font-size: 28px;
+        font-size: 24px;
     }
 }
 
