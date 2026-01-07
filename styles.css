@@ -1,4 +1,4 @@
-/* Custom Fonts - Wasted Vindey and Roletta */
+/* Custom Fonts */
 @font-face {
     font-family: 'Wasted Vindey';
     src: url('https://fonts.cdnfonts.com/s/98691/WastedVindeyRegular-7BLJB.woff') format('woff');
@@ -213,9 +213,8 @@ section.section-slide {
     transform-origin: center bottom;
 }
 
-/* Hover-based animation removed; scroll-triggered class `hero-scrolled` remains */
 
-/* Apply same effect when user scrolls (class added via JS) */
+
 .hero-title.hero-scrolled {
     transform: translateY(-22px) scale(1.08);
     text-shadow: -28px 10px 32px rgba(0,0,0,0.48);
@@ -410,7 +409,7 @@ section.section-slide {
     opacity: 1;
 }
 
-/* Match the same slide-in behavior for the about section figure */
+/* same slide-in behavior for the about section figure */
 .about-img {
     /* start translated to the right and hidden */
     transform: translateX(40%);
