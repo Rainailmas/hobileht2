@@ -88,7 +88,7 @@
             alt="the joy"
           />
           <p>the joy</p>
-          <!-- hidden extras for the joy carousel (not separate cards) -->
+          <!-- hidden extras for the joy carousel -->
           <img
             class="hidden-gallery"
             src="Images/orange 2.jpg"
@@ -279,7 +279,7 @@
       </div>
     </section>
 
-    <!-- Lightbox / Carousel modal -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" aria-hidden="true">
       <div class="lightbox-inner">
         <button class="lb-close" aria-label="Close">×</button>
@@ -298,7 +298,7 @@
       const sections = document.querySelectorAll("section");
       const heroTitle = document.querySelector(".hero-title");
 
-      // Observe hero entering the viewport and add `hero-scrolled` when visible
+      // hero entering viewport observer //
       if (heroTitle) {
         const heroObserver = new IntersectionObserver(
           (entries) => {
