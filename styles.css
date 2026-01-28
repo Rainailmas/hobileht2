@@ -1,7 +1,7 @@
 /* Custom Fonts */
 @font-face {
     font-family: 'Wasted Vindey';
-    src: url('https://fonts.cdnfonts.com/s/98691/WastedVindeyRegular-7BLJB.woff') format('woff');
+    src: url('fonts/WastedVindeyRegular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -68,7 +68,7 @@
 
 @font-face {
     font-family: 'Roletta';
-    src: url('https://fonts.cdnfonts.com/s/104654/RolettaRegular-eZoLB.woff') format('woff');
+    src: url('fonts/RolettaRegular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -168,7 +168,7 @@ html {
     height: 100vh;
     min-height: 600px;
     max-height: 1117px;
-    background: url('https://www.figma.com/api/mcp/asset/7f6268d5-fdb3-4ded-a164-13b763cfae20') center 75%/cover no-repeat;
+    background: url('Images/hero.png') center 75%/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
