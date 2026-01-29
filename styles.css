@@ -168,7 +168,7 @@ html {
     height: 100vh;
     min-height: 600px;
     max-height: 1117px;
-    background: url('Images/hero.png') center 75%/cover no-repeat;
+    background: url('images/hero.png') center 75%/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
